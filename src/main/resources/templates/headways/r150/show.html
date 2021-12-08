@@ -190,6 +190,7 @@
                       <span th:text="${fuse.name}" class="labelForTextbox" style="color: crimson">Street</span>
                       <span th:text="'Do: ' + ${fuse.expire}" class="labelReadOnlyTB" style="color:chocolate">Street</span>
                       <b><span th:text="${fuse.idNumber}" class="labelForTextbox">Rodzaj zabezpieczenia</span></b>
+                      <span th:if="${fuse?.fuseExpired}" style="color:red"><a href="#" th:href="@{'/fuse/' + ${fuse.id} +'/edit/'}" style="color:red">Zalegalizuj</a></span>
                     </p>
                   </td>
                 </tr>
@@ -200,9 +201,9 @@
       <div class="col-md-3">
         <input onclick='javascript:window.history.back()' value='Wróć' type='button' class="btn btn-default"/>
       </div>
-      <!--<div class="col-md-1 col-md-offset-7">
+      <div class="col-md-1 col-md-offset-7">
         <button type="submit" class="btn btn-success"><a href="#" th:href="@{'/r150/' + ${r150.id} + '/edit'}" style="color: #f1f1f1;" >Edytuj</a></button>
-      </div>-->
+      </div>
       </div>
     </div>
   </div>
