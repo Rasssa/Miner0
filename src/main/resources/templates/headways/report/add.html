@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+  <meta charset="UTF-8"/>
+  <title>ADD CABINET</title>
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+  <style>
+    textarea {
+  resize: none;
+}
+  </style>
+
+</head>
+<body>
+<!--/*@thymesVar id="artist" type="com.example.muslibry5k.commands.ArtistCommand"*/-->
+<div class="container-fluid" style="margin-top: 20px">
+  <div class="row">
+    <div class="col-md-4 col-md-offset-3">
+      <form  th:object="${report}" th:action="@{/report/new/save}" method="post">
+        <input type="hidden" th:field="*{id}"/>
+        <div class="pannel-group">
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <h1 class="panel-title"><span th:text="*{id} != null ? 'Edit ' : 'New '"></span>CABINET INFORMATIONS</h1>
+            </div>
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-md-6 form-group">
+                  <label>Maintenance</label>
+                  <select class="form-control" th:field="*{maintenances}" multiple="multiple">
+                    <option th:each="maintenance : ${maintenans}" th:text="${maintenance.name}" th:value="${maintenance.id}">Maintenance</option>
+                  </select>
+                </div>
+                <div class="col-md-6 form-group">
+                  <label>Work description</label>
+                  <textarea name="news_content" rows="7" cols="30"  th:field="*{description}" placeholder="Comment text."/> </textarea>
+                </div>
+                <div class="col-md-6 form-group">
+                  <label>Shift</label>
+                  <input type="text" class="form-control" align="right" th:field="*{shift}"/>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+</html>

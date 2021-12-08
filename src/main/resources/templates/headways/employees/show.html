@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+  <meta charset="UTF-8">
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <title>Employee Details</title>
+
+  <style>
+.dropbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+  background-color: #3e8e41;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.show {display:block;}
+
+
+</style>
+</head>
+
+<body>
+<div class="navbar navbar-inverse navbar-fixed-top" th:fragment="header">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" th:href="@{/}">MINERO</a>
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="#" th:href="@{/headways}">Headways</a>
+        </li>
+        <li>
+          <a href="#" th:href="@{/cabinets}">Cabinets</a>
+        </li>
+        <li>
+          <a href="#" th:href="@{/r150s}">Combines</a>
+        </li>
+        <li>
+          <a href="#" th:href="@{/fuses}">Fuses</a>
+        </li>
+        <li>
+          <a href="#" th:href="@{/employees}">Employees</a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <div class="dropdown">
+            <button id="myBtn" class="dropbtn">Options</button>
+            <div id="myDropdown" class="dropdown-content">
+              <a href="#" th:href="@{'/'}">Home</a>
+              <a href="#" th:href="@{'/headways'}">All headways</a>
+              <a href="#contact">Contact</a>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid" style="margin-top: 70px;">
+  <div class="row" >
+    <div class="col-md-6 col-md-offset-3">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h1 class="panel-title">Dane pracownika</h1>
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-4">
+              <h5><b>Imię</b></h5>
+            </div>
+            <div class="col-12 col-md-8">
+              <h5 th:text="${employee.firstName}">RODZAJ SZAFY2</h5>
+            </div>
+          </div>
+          <div class="row">
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <h5><b>Nazwisko</b></h5>
+            </div>
+            <div class="col-12 col-md-8">
+              <h5 th:text="${employee.lastName}">Notatka do kombajnu</h5>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <h5><b>Oddział</b></h5>
+            </div>
+            <div class="col-12 col-md-8">
+              <h5 th:text="${employee.squad}">RODZAJ SZAFY2</h5>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <h5><b>Odpowiedzialny za rejon</b></h5>
+            </div>
+            <div class="col-md-4">
+              <p th:each="fuse : ${employee.headWays}">
+                <span th:text="${fuse.deck}">Fuse</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<h4 align="center">
+  <a href="list.html">Center</a>
+</h4>
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+</script>
+
+<script>
+document.getElementById("myBtn").onclick = function() {myFunction()};
+
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+</script>
+
+</body>
+</html>

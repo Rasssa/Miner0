@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <style>
+  #wrapper{
+  display:flex;
+  justify-content:space-between;
+}
+
+#kontener{
+
+margin: 0 auto;
+overflow:auto;
+}
+
+#kontener2{
+float: right;
+
+margin: 0 auto;
+overflow:auto;
+}
+
+#naglowek{
+margin: 50px;
+width: 870px;
+height: 50px;
+border: 2px solid blue;
+border-radius: 25px;
+font-size: 32px;
+text-shadow: 2px 2px 11px red
+}
+#naglowek2{
+margin: 50px;
+width: 870px;
+height: 50px;
+border: 2px solid blue;
+border-radius: 25px;
+font-size: 32px;
+text-shadow: 2px 2px 11px red
+}
+
+.kolumna{
+font-size: 22px;
+border-radius: 25px;
+text-align:center;
+vertical-align: middle;
+line-height: 190px;
+float: left;
+margin: 10px;
+width: 216px;
+height: 190px;
+border: 2px solid blue;
+
+}
+
+.kolumnanotatka{
+border-radius: 25px;
+float: up;
+margin: 10px;
+width: 914px;
+height: 80px;
+border: 2px solid blue;
+}
+
+#clear{
+clear: both;
+}
+
+#stopka{
+margin: 10px;
+width: 936px;
+height: 400px;
+border: 2px solid blue;
+
+}
+
+#note{
+color: red;
+font-size: 32px;
+}
+body {
+background-color: rgb(122, 200, 300);
+}
+.collapsible {
+  background-color: rgb(122, 200, 300);
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+.content {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color:rgb(122, 200, 300);
+}
+.active, .collapsible:hover {
+  background-color: #ccc;
+}
+
+.dropbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+  background-color: #3e8e41;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.show {display:block;}
+  </style>
+  <meta charset="UTF-8">
+
+</head>
+<body>
+<div id = "wrapper">
+<div id="kontener">
+  <div id="naglowek" align="center">PRZODEK N-8 404/4</div>
+  <button type="button" class="collapsible"> Szczegóły </button>
+  <div class="content">
+  <div class="kolumna"><a href="#" th:href="@{'/headway/' + ${headway.r150.id} + '/r150s'}" class="btn btn-success">Kombajn</a></div>
+  <div class="kolumna"><a href="#" th:href="@{'/headway/' + ${headway.cabinet.id} + '/cabinet'}" class="btn btn-success">Szafa manewrowa</a></div>
+  <div class="kolumna"><a href="#" th:href="@{'/headway/' + ${headway.id} + '/employees'}"class="btn btn-success">Pracownicy</a></div>
+  <div class="kolumna">ODSTAWA</div>
+  </div>
+  <div id="clear"></div>
+
+  <div id="stopka" align="center">NOTATKI Z POSZCZEGÓLNYCH ELEMENTÓW
+    <div id="clear"></div>
+    <button type="button" class="collapsible">KOMBAJN</button>
+    <div class="content">
+      <div id="note">
+      <td th:text="${headway.r150.note}">te</td>
+      </div>
+    </div>
+    <button type="button" class="collapsible">SZAFA MANEWROWA</button>
+    <div class="content">
+      <tr th:each="cabinet, custStat : ${headway.cabinet}">
+        <td th:text="${cabinet.type}">Typ szafy</td>
+        <td><details><summary>ZABEZPIECZENIA</summary>
+          <p th:each="fuse : ${cabinet.fuses}">
+            <span th:text="${fuse.name}">Fuse</span>
+            <span th:text="${fuse.expire}">Fuse</span>
+        </details>
+        </td>
+      </tr>
+    </div>
+    <button type="button" class="collapsible">TRANSFORMATORY</button>
+    <div class="content">
+      Transformator 500V: <td th:text="${headway.cabinet.traffo1}"></td></br>
+      Transformator 1000V: <td th:text="${headway.cabinet.traffo2}"></td>
+
+    </div>
+    <button type="button" class="collapsible">ODSTAWA</button>
+    <div class="content">
+      PRACE TRWAJĄ
+    </div>
+
+  </div>
+</div>
+<div id="kontener2">
+  <div class="dropdown">
+  <button id="myBtn" class="dropbtn">Dropdown</button>
+  <div id="myDropdown" class="dropdown-content">
+    <a href="#" th:href="@{'/'}">Home</a>
+    <a href="#" th:href="@{'/headways'}">All headways</a>
+    <a href="#contact">Contact</a>
+  </div>
+</div>
+</div>
+</div>
+
+
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+</script>
+
+<script>
+document.getElementById("myBtn").onclick = function() {myFunction()};
+
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+  <meta charset="UTF-8">
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <title>Szczegóły kombajny</title>
+  <style>
+    .dropbtn {
+      background-color: #4CAF50;
+      color: white;
+      padding: 16px;
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .dropbtn:hover, .dropbtn:focus {
+      background-color: #3e8e41;
+    }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      overflow: auto;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    }
+
+    .dropdown-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .dropdown-content a:hover {background-color: #f1f1f1}
+
+    .show {display:block;}
+
+
+  </style>
+  <style>
+    .content {
+      padding: 0 18px;
+      display: none;
+      overflow: hidden;
+    }
+    .active, .collapsible:hover {
+      background-color: #ccc;
+    }
+    .collapsible {
+      background-color: white;
+      cursor: pointer;
+      padding: 18px;
+      width: 100%;
+      border: none;
+      text-align: left;
+      outline: none;
+      font-size: 15px;
+    }
+    <!--</style>
+  <style>
+    .dropbtn {
+      background-color: #04AA6D;
+      color: white;
+      padding: 16px;
+      font-size: 16px;
+      border: none;
+    }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f1f1f1;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+
+    .dropdown-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .dropdown-content a:hover {background-color: #ddd;}
+
+    .dropdown:hover .dropdown-content {display: block;}
+
+    .dropdown:hover .dropbtn {background-color: #3e8e41;}
+  </style>
+</head>
+<body>
+<div class="navbar navbar-inverse navbar-fixed-top" th:fragment="header">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" th:href="@{/}">MINERO</a>
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="#" th:href="@{/headways}">Wszystkie chodniki przodkowe</a>
+        </li>
+        <li>
+          <a href="#" th:href="@{/cabinets}">Szafy manewrowe</a>
+        </li>
+        <li>
+          <a href="#" th:href="@{/r150s}">Kombajny przodkowe</a>
+        </li>
+        <li>
+          <a href="#" th:href="@{/fuses}">Zabezpieczenia</a>
+        </li>
+        <li>
+          <a href="#" th:href="@{/employees}">Pracownicy</a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <div class="dropdown">
+            <button id="myBtn" class="dropbtn">Użytkownik</button>
+            <div id="dropdown" class="dropdown-content">
+              <a th:href="@{'/employees/shift/'}">Wróć do obecności</a>
+              <a th:href="@{'/headway/divide/'}">Wróć do podziału</a>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="container-fluid" style="margin-top: 70px;">
+  <div class="row" >
+    <div class="col-md-6 col-md-offset-3">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+           <center><h1 class="panel-title" th:text="'Szafa kombajnowa: ' + ${r150.electricalCabinet} + ' Numer identyfikacyjny: ' + ${r150.idNumber}">STATUS R150</h1></center>
+            <!--<h1 class="panel-title"><center>Szczegóły kombajnu</center></h1>-->
+          </div>
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-md-4">
+                <h5><b>Rodzaj szafy:</b></h5>
+              </div>
+              <div class="col-12 col-md-8">
+                <h5 th:text="${r150.electricalCabinet}">RODZAJ SZAFY2</h5>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <h5><b>Numer identyfikacyjny:</b></h5>
+              </div>
+              <div class="col-12 col-md-8">
+                <h5 th:text="${r150.idNumber}">Numer identyfikacyjny</h5>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <h5><b>Zabezpieczenia:</b></h5>
+              </div>
+              <div class="col-12 col-md-8">
+                <tr th:each="r150 : ${r150}">
+                  <td>
+                    <p th:each="fuse : ${r150.fuses}">
+                      <span th:text="${fuse.name}" class="labelForTextbox" style="color: crimson">Street</span>
+                      <span th:text="'Do: ' + ${fuse.expire}" class="labelReadOnlyTB" style="color:chocolate">Street</span>
+                      <b><span th:text="${fuse.idNumber}" class="labelForTextbox">Rodzaj zabezpieczenia</span></b>
+                    </p>
+                  </td>
+                </tr>
+              </div>
+            </div>
+          </div>
+        </div>
+      <div class="col-md-3">
+        <input onclick='javascript:window.history.back()' value='Wróć' type='button' class="btn btn-default"/>
+      </div>
+      <!--<div class="col-md-1 col-md-offset-7">
+        <button type="submit" class="btn btn-success"><a href="#" th:href="@{'/r150/' + ${r150.id} + '/edit'}" style="color: #f1f1f1;" >Edytuj</a></button>
+      </div>-->
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+</script>
+
+<script>
+document.getElementById("myBtn").onclick = function() {myFunction()};
+
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+</script>
+
+</body>
+</html>

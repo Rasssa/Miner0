@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"/>
+  <title>ADD FUSE</title>
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+  <style>
+    .dropbtn {
+      background-color: #4CAF50;
+      color: white;
+      padding: 16px;
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .dropbtn:hover, .dropbtn:focus {
+      background-color: #3e8e41;
+    }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      overflow: auto;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    }
+
+    .dropdown-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .dropdown-content a:hover {background-color: #f1f1f1}
+
+    .show {display:block;}
+
+
+  </style>
+  <style>
+    .content {
+      padding: 0 18px;
+      display: none;
+      overflow: hidden;
+    }
+    .active, .collapsible:hover {
+      background-color: #ccc;
+    }
+    .collapsible {
+      background-color: white;
+      cursor: pointer;
+      padding: 18px;
+      width: 100%;
+      border: none;
+      text-align: left;
+      outline: none;
+      font-size: 15px;
+    }
+    <!--</style>
+  <style>
+    .dropbtn {
+      background-color: #04AA6D;
+      color: white;
+      padding: 16px;
+      font-size: 16px;
+      border: none;
+    }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f1f1f1;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+
+    .dropdown-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .dropdown-content a:hover {background-color: #ddd;}
+
+    .dropdown:hover .dropdown-content {display: block;}
+
+    .dropdown:hover .dropbtn {background-color: #3e8e41;}
+  </style>
+</head>
+<body>
+<div class="navbar navbar-inverse navbar-fixed-top" th:fragment="header">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" th:href="@{/}">MINERO</a>
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="#" th:href="@{/headways}">Wszystkie chodniki przodkowe</a>
+        </li>
+        <li>
+          <a href="#" th:href="@{/cabinets}">Szafy manewrowe</a>
+        </li>
+        <li>
+          <a href="#" th:href="@{/r150s}">Kombajny przodkowe</a>
+        </li>
+        <li>
+          <a href="#" th:href="@{/fuses}">Zabezpieczenia</a>
+        </li>
+        <li>
+          <a href="#" th:href="@{/employees}">Pracownicy</a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <div class="dropdown">
+            <button id="myBtn" class="dropbtn">Użytkownik</button>
+            <div id="dropdown" class="dropdown-content">
+              <a href="#" th:href="@{'/headway/new'}">Add headway</a>
+              <a href="#" th:href="@{'/'}">Home</a>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="container-fluid" style="margin-top: 70px">
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
+      <form  th:object="${fuse}" th:action="@{/fuse/new/save}" method="post">
+        <input type="hidden" th:field="*{id}"/>
+        <div class="pannel-group">
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <h1 class="panel-title"><center>Dodaj zabezpieczenie</center></h1>
+            </div>
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-md-6 form-group">
+                  <label>Zakończenie legalizacji</label>
+                  <input type="date" class="form-control" th:field="*{expire}"/>
+                </div>
+                <div class="col-md-6 form-group">
+                  <label>Rodzaj zabezpieczenia</label>
+                  <input type="text" class="form-control" th:field="*{name}"/>
+                </div>
+                <div class="col-md-6 form-group">
+                  <label>Nastaw prądu</label>
+                  <input type="number" class="form-control" th:field="*{setting}"/>
+                </div>
+                <div class="col-md-6 form-group">
+                  <label>Numer identyfikacyjny</label>
+                  <input type="text" class="form-control" th:field="*{idNumber}"/>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <input onclick='javascript:window.history.back()' value='Wróć' type='button' class="btn btn-default"/>
+        </div>
+        <div class="col-md-1 col-md-offset-7">
+          <button type="submit" class="btn btn-success">Zapisz</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <style>
+        .dropbtn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 16px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .dropbtn:hover, .dropbtn:focus {
+            background-color: #3e8e41;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            overflow: auto;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {background-color: #f1f1f1}
+
+    </style>
+    <style>
+        .content {
+            padding: 0 18px;
+            display: none;
+            overflow: hidden;
+        }
+        .active, .collapsible:hover {
+            background-color: #ccc;
+        }
+        .collapsible {
+            background-color: white;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 15px;
+        }
+        <!--</style>
+    <style>
+        .dropbtn {
+            background-color: #04AA6D;
+            color: white;
+            padding: 16px;
+            font-size: 16px;
+            border: none;
+        }
+        .dropbtnHeads {
+            background-color: rgba(0,0,0,0);
+            color: black;
+            padding: 10px;
+            font-size: 18px;
+            font-palette: rgba(0,0,0,0);
+            border: none;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f1f1f1;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        #naglowek{
+            margin: 50px;
+            width: 870px;
+            height: 50px;
+            border: 2px solid blue;
+            border-radius: 25px;
+            font-size: 32px;
+            text-shadow: 2px 2px 11px red
+        }
+        .dropdown-content a:hover {background-color: #ddd;}
+
+        .dropdown:hover .dropdown-content {display: block;}
+
+        .dropdown:hover .dropbtn {background-color: #3e8e41;}
+    </style>
+</head>
+<body style="margin-left: -300px">
+<div class="navbar navbar-inverse navbar-fixed-top" th:fragment="header">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" th:href="@{/}">MINERO</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li>
+                    <div class="dropdown">
+                        <button id="myBtn" class="dropbtnHeads"><a href="#" th:href="@{/headways}" style="color: silver">Oddział ED-2</a></button>
+                        <div id="dropdown" class="dropdown-content">
+                            <a th:href="@{'/employees/shift/'}">Wróć do obecności</a>
+                            <a th:href="@{'/headways/divide/'}">Wróć do podziału</a>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="dropdown">
+                        <button id="myBtn" class="dropbtnHeads"><a href="#" th:href="@{/headways}"style="color: silver">Szafy manewrowe</a></button>
+                        <div id="dropdown" class="dropdown-content">
+                            <a th:href="@{'/employees/shift/'}">Wróć do obecności</a>
+                            <a th:href="@{'/headways/divide/'}">Wróć do podziału</a>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="dropdown">
+                        <button id="myBtn" class="dropbtnHeads"><a href="#" th:href="@{/headways}"style="color: silver">Zabezpieczenia</a></button>
+                        <div id="dropdown" class="dropdown-content">
+                            <a th:href="@{'/employees/shift/'}">Wróć do obecności</a>
+                            <a th:href="@{'/headways/divide/'}">Wróć do podziału</a>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="dropdown">
+                        <button id="myBtn" class="dropbtnHeads"><a href="#" th:href="@{/headways}"style="color: silver">Zabezpieczenia</a></button>
+                        <div id="dropdown" class="dropdown-content">
+                            <a th:href="@{'/employees/shift/'}">Wróć do obecności</a>
+                            <a th:href="@{'/headways/divide/'}">Wróć do podziału</a>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="dropdown">
+                        <button id="myBtn" class="dropbtnHeads"><a href="#" th:href="@{/headways}"style="color: silver">Pracownicy</a></button>
+                        <div id="dropdown" class="dropdown-content">
+                            <a th:href="@{'/employees/shift/'}">Wróć do obecności</a>
+                            <a th:href="@{'/headways/divide/'}">Wróć do podziału</a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <div class="dropdown">
+                        <button id="myBtn" class="dropbtn">Użytkownik</button>
+                        <div id="dropdown" class="dropdown-content">
+                            <a th:href="@{'/employees/shift/'}">Wróć do obecności</a>
+                            <a th:href="@{'/headways/divide/'}">Wróć do podziału</a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<span th:if="${headway?.working}"><center><div align="center" style="margin-left: 400px; margin-top: 70px"><b th:text="${headway.deck}" style="font-size: 24px"></b></div></center></span>
+<span th:if="${not headway?.working}"><center><div align="center" style="margin-left: 400px; margin-top: 70px"><b th:text="${headway.deck}" style="font-size: 24px"></b></div></center></span>
+
+<div class="container-fluid" style="margin-left: 350px">
+    <div class="row">
+        <div class="col-sm-5 col-md-3">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h1 class="panel-title">Zabezpieczenia bez legalizacji</h1>
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead class="thead-inverse">
+                            <th>Numer identyfikacyjny</th>
+                            <th>Rodzaj zabezpieczenia</th>
+                            </thead>
+                            <tr th:block th:each="fuse : ${fusesheadway}">
+                                <div th:if="${not #lists.isEmpty(fusesheadway)}">
+                                    <td th:text="${fuse?.idNumber}">123</td>
+                                    <td>
+                                        <div th:if="${not #lists.isEmpty(fuse.cabinetFuse?.id)}">
+                                            <a href="#" th:href="@{'/fuse/' + ${fuse.id} + '/edit'}"><p th:text="${fuse.name}"> Przynależność </p></a>
+                                        </div>
+                                        <div th:if="${not #lists.isEmpty(fuse.r150Fuse?.id)}">
+                                            <a href="#" th:href="@{'/fuse/' + ${fuse.id} + '/edit'}"><p th:text="${fuse.name}"> Przynależność </p></a>
+                                        </div>
+                                    </td>
+                                </div>
+                                </trth:block>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-5 offset-md-2 col-lg-6 offset-lg-1">
+            <form  th:object="${headway}">
+                <div class="pannel-group">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h1 class="panel-title"><center>Notatki i prace zlecone</center></h1>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-6 form-group">
+                                    <td>
+                                        <center> <label>Notatki</label></center>
+                                        <th:block th:each = "report : ${headway.reports}">
+                                               <span th:text="${report?.description}">Treść raportów</span>
+                                        </th:block>
+                                    </td>
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <center><label>Prace zaplanowane</label></center>
+                                    <td>
+                                        <th:block th:each = "report : ${headway.reports}">
+                                            <th:block th:each = "maintenance : ${report.maintenances}">
+                                                <li>
+                                                    <center><p><b th:text="${maintenance.name} + ' '"></b><a href="#" th:href="@{'/report/'+ ${report.id} + '/maintenance/' + ${maintenance.id} + '/delete'}" style="margin-right: 5px;">Usuń </a></p></center>
+                                                    <div th:if="${#lists.isEmpty(maintenance?.description)}">
+                                                        <a href="#" th:href="@{'/maintenance/' + ${maintenance.id} + '/edit'}" style="margin-right: 5px;">Dodaj informacje </a>
+                                                    </div>
+                                                    <div th:if="${not #lists.isEmpty(maintenance?.description)}">
+                                                        <span th:text="${maintenance.description}"></span>
+                                                        <p></p>
+                                                        <a href="#" th:href="@{'/maintenance/' + ${maintenance.id} + '/edit'}" style="margin-right: 5px;">Edytuj informacje</a>
+                                                    </div>
+                                                </li>
+                                            </th:block>
+                                        </th:block>
+                                    </td>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+                <div th:if="${#lists.isEmpty(headway.reports)}" class="col-md-6 col-md-offset-1">
+                <a href="#" th:href="@{'/headway/' + ${headway.id} + '/report' + '/new'}" role="button" class="btn btn-success">Dodaj raport</a>
+                </div>
+                <div th:if="${not #lists.isEmpty(headway.reports)}" class="col-md-6 col-md-offset-1">
+                <a href="#" th:href="@{'/report/' + ${headway.reports.id} + '/edit'}" role="button" class="btn btn-success" style="align-content: end">Edytuj informacje o pracach</a>
+                </div>
+                <div class="col-md-2 col-md-offset-1"?>
+                <a href="#" th:href="@{'/headway/' + ${headway.id} + '/divide'}" role="button" class="btn btn-success" style="align-content: end">Potwierdź i podziel chodnik</a>
+                </div>
+        </div>
+        <div class="col-md-3 ml-md-auto">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <center><h1 class="panel-title">Informacje o chodniku</h1></center>
+                </div>
+                <div class="panel-body">
+                    <p></p>
+                        Stan chodnika:
+                    <span th:if="${headway?.working}" style="color: #4CAF50">Postęp</span>
+                    <span th:if="${not headway?.working}" style="color:red ">Postój</span>
+                    <a href="#" th:href="@{'/headway/' + ${headway.id} + '/stop'}" style="margin-right: 5px;">Zmień</a>
+                    <p></p>
+
+                    <span th:if="${headway?.divided}" style="color: #4CAF50">Chodnik został podzielony</span>
+                    <span th:if="${not headway?.divided}" style="color:red ">Chodnik nie został podzielony</span>
+                    <p></p>
+                    Postęp: <span th:text="${headway.progress}"> obudowy</span>
+                    <p></p>
+                    Szafa manewrowa:
+                    <span th:if="${#lists.isEmpty(headway?.cabinet?.id)}">
+                        Brak szafy manewrowej
+                    </span>
+                    <span th:if="${not #lists.isEmpty(headway?.cabinet?.id)}">
+                        <a href="#" th:href="@{'/cabinet/' + ${headway.cabinet?.id} + '/show'}" style="margin-right: 5px;" th:text="${headway.cabinet.type}">Szafa manewrowa</a>
+                    </span>
+                    <p></p>
+                    Kombajn:
+                    <span th:if="${#lists.isEmpty(headway?.r150?.id)}">
+                        Brak kombajnu
+                    </span>
+                    <span th:if="${not #lists.isEmpty(headway?.r150?.id)}">
+                        <a href="#" th:href="@{'/headway/' + ${headway.r150.id} + '/r150s'}" style="margin-right: 5px;" th:text="${headway.r150.electricalCabinet}">Kombajn przodkowy</a>
+                    </span>
+                    <p></p>
+                    <span style="color: chocolate">Ostatni pracownicy:</span>
+                    <span th:block th:each="employe : ${headway.employees}">
+                       <p>
+                           <span th:text="${employe.firstName}"></span>
+                           <span th:text="${employe.lastName}"></span>
+                       </p>
+                    </span>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

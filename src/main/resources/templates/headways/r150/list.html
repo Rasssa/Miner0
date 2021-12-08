@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+  <title>Your R150s <span th:if="${filter} != null" th:text="'filtered by ' + ${filter}"></span></title>
+  <style>
+    .dropbtn {
+      background-color: #4CAF50;
+      color: white;
+      padding: 16px;
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .dropbtn:hover, .dropbtn:focus {
+      background-color: #3e8e41;
+    }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      overflow: auto;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    }
+
+    .dropdown-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .dropdown-content a:hover {background-color: #f1f1f1}
+
+  </style>
+  <style>
+    .content {
+      padding: 0 18px;
+      display: none;
+      overflow: hidden;
+    }
+    .active, .collapsible:hover {
+      background-color: #ccc;
+    }
+    .collapsible {
+      background-color: white;
+      cursor: pointer;
+      padding: 18px;
+      width: 100%;
+      border: none;
+      text-align: left;
+      outline: none;
+      font-size: 15px;
+    }
+    <!--</style>
+  <style>
+    .dropbtn {
+      background-color: #04AA6D;
+      color: white;
+      padding: 16px;
+      font-size: 16px;
+      border: none;
+    }
+    .dropbtnHeads {
+      background-color: rgba(0,0,0,0);
+      color: black;
+      padding: 10px;
+      font-size: 18px;
+      font-palette: rgba(0,0,0,0);
+      border: none;
+    }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f1f1f1;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+
+    .dropdown-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .dropdown-content a:hover {background-color: #ddd;}
+
+    .dropdown:hover .dropdown-content {display: block;}
+
+    .dropdown:hover .dropbtn {background-color: #3e8e41;}
+  </style>
+</head>
+<body style="margin-left: -300px">
+<div class="navbar navbar-inverse navbar-fixed-top" th:fragment="header">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" th:href="@{/}" style="font-size: 26px">M I N E R O</a>
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+          <div class="dropdown">
+            <button id="myBtn" class="dropbtnHeads"><a href="#" style="font-size: 16px; color: silver">Oddział ED-2</a></button>
+            <div id="dropdown" class="dropdown-content">
+              <a th:href="@{'/headway/list/'}">Lista rejonów</a>
+              <a th:href="@{'/employees/shift/'}">Lista pracowników obecnej zmiany</a>
+              <a th:href="@{'/headways/divide/'}">Miejsce podziału</a>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="dropdown">
+            <button id="myBtn" class="dropbtnHeads"><a href="#" th:href="@{/cabinet/list}"style="font-size: 16px; color: silver">Szafy manewrowe</a></button>
+          </div>
+        </li>
+        <li>
+          <div class="dropdown">
+            <button id="myBtn" class="dropbtnHeads"><a href="#" th:href="@{/r150/list}"style="font-size: 16px; color: silver">Kombajny przodkowe</a></button>
+          </div>
+        </li>
+        <li>
+          <div class="dropdown">
+            <button id="myBtn" class="dropbtnHeads"><a href="#" th:href="@{/fuses}"style="font-size: 16px; color: silver">Zabezpieczenia</a></button>
+          </div>
+        </li>
+        <li>
+          <div class="dropdown">
+            <button id="myBtn" class="dropbtnHeads"><a href="#" th:href="@{/employees}"style="font-size: 16px; color: silver">Pracownicy</a></button>
+          </div>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <div class="dropdown">
+            <button id="myBtn" class="dropbtn">Użytkownik</button>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="container" style="margin-top: 70px;">
+  <div class="row">
+    <div class="col-md-9 col-md-offset-3">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h1 class="panel-title"><center>Kombajny przodkowe</center></h1>
+        </div>
+        <div class="panel-body">
+          <td class="table-responsive">
+            <table class="table table-hover">
+              <thead class="thead-inverse">
+              <tr>
+                <th>Numer identyfikacyjny</th>
+                <th>Rodzaj szafy</th>
+                <th>Miejsce pracy</th>
+                <th>Zabezpieczenia</th>
+                <th>Edycja</th>
+              </tr>
+              <tr th:each="r150 : ${r150s}">
+                <td><b th:text="${r150.idNumber}">działajo</b></td>
+                <td th:text="${r150.electricalCabinet}">trafok500</td>
+                <td th:text="${r150.headWay?.deck}">headWay</td>
+                <td>
+                  <button type="button" class="collapsible"> Rozwiń </button>
+                                        <div class="content">
+                  <li th:each="fuse : ${r150.fuses}">
+                    <p th:text="${fuse.name}">Street</p>
+                    <p th:text="${fuse.expire}">Street</p>
+                                        </div>
+                  </li>
+                </td>
+                <td>
+                  <th:block th:each = "r1502 : ${r150}">
+                    <div class="dropdown">
+                      <button id="dropbtn" class="dropbtn">Opcje</button>
+                      <div id="myDropdown" class="dropdown-content">
+                        <a href="#" th:href="@{'/r150/' + ${r150.id} + '/edit'}" style="margin-right: 5px;" >Edytuj kombajn</a>
+                        <a href="#" th:href="@{'/headway/' + ${r150.id} + '/r150s'}" style="margin-right: 5px;" >Szczegóły</a>
+                        <!--<div th:if="${#lists.isEmpty(r150?.headWay)}">-->
+                        <a href="#" th:href="@{'/r150/' + ${r150.id} + '/delete'}" style="margin-right: 5px;" >Usuń kombajn</a>
+                      </div>
+                    </div>
+                    </div>
+                  </th:block>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  <div class="row">
+    <div class="col-md-8 col-md-offset-3">
+      <div class="col-md-1">
+        <input onclick='javascript:window.history.back()' value='Wróć' type='button' class="btn btn-default"/>
+      </div>
+      <div class="col-md-1 col-md-offset-10">
+        <a th:href="@{/r150/new}"role="button" class="btn btn-success">Dodaj kombajn</a>
+      </div>
+    </div>
+  </div>
+  </div>
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+</script>
+
+<script>
+document.getElementById("myBtn").onclick = function() {myFunction()};
+
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+</script>
+
+</body>
+</html>

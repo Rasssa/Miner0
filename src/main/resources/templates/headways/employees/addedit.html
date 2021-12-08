@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"/>
+  <title>EMPLOYEE</title>
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+</head>
+<body>
+<!--/*@thymesVar id="song" type="com.example.muslibry5k.commands.SongCommand"*/-->
+<!--/*@thymesVar id="artist" type="com.example.muslibry5k.model.Artist"*/-->
+<!--/*@thymesVar id="publisher" type="com.example.muslibry5k.model.Publisher"*/-->
+<div class="container-fluid" style="margin-top: 20px">
+  <div class="row">
+    <div class="col-md-4 col-md-offset-3">
+      <form  th:object="${employee}" th:action="@{/employee/new/save}" method="post">
+        <input type="hidden" th:field="*{id}"/>
+        <div class="pannel-group">
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <h1 class="panel-title"><span th:text="*{id} != null ? 'Edit ' : 'Nowy '"></span>Pracownik</h1>
+            </div>
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-md-8 form-group">
+                  <label>Imię</label>
+                  <input type="text" class="form-control" th:field="*{firstName}"/>
+                </div>
+                <div class="col-md-4 form-group">
+                  <label></label>
+                  <p>
+                  <select th:field="*{shift}">
+                  <option value="1">Zmiana A</option>
+                  <option value="2">Zmiana B</option>
+                  <option value="3">Zmiana C</option>
+                  <option value="4">Zmiana D</option>
+                </select>
+                  </p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 form-group">
+                  <label>Nazwisko</label>
+                  <input type="text" class="form-control" th:field="*{lastName}"/>
+                </div>
+                <div class="col-md-6 form-group">
+                  <label>Oddział</label>
+                  <input type="text" class="form-control" th:field="*{squad}"/>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+</html>

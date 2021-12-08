@@ -1,0 +1,73 @@
+<!--
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+
+  &lt;!&ndash; Latest compiled and minified CSS &ndash;&gt;
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  &lt;!&ndash; Optional theme &ndash;&gt;
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+  &lt;!&ndash; Latest compiled and minified JavaScript &ndash;&gt;
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+  <title>Cabinet details</title>
+</head>
+<body>
+<div class="container-fluid" style="margin-top: 20px;">
+  <div class="row">
+    <div class="col-md-4 col-md-offset-3">
+      <div class="panel-group">
+
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h1>Cabinet</h1>
+          </div>
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-md-2">
+                <h5><b>Trafok 1000v</b></h5>
+              </div>
+              <div class="col-md-2">
+                <h5 th:text="${cabinet.traffo1}"></h5>
+              </div>
+              <div class="col-md-2">
+                <h5><b>Rodzaj</b></h5>
+              </div>
+              <div class="col-md-2">
+                <h5 th:text="${cabinet.traffo2}"></h5>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="col-md-2">
+                <h5><b>Zabezpieczenia</b></h5>
+              </div>
+              <div class="col-md-2">
+                <tr th:each="cabinet, custStat : ${cabinet}">
+
+                  <td>
+                    <p th:each="fuse : ${cabinet.fuses}">
+                      <span th:text="${fuse.name}">Street</span>
+                      <span th:text="${fuse.expire}">Street</span>
+                  </td>
+                </tr>
+              </div>
+              <h5><b>Trafok 500v</b></h5>
+            </div>
+            <div class="col-md-2">
+              <h5 th:text="${cabinet.type}"></h5>
+            </div>
+            </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>-->
