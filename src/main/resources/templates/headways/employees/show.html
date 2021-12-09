@@ -15,48 +15,103 @@
   <title>Employee Details</title>
 
   <style>
-.dropbtn {
-  background-color: #4CAF50;
-  color: white;
-  padding: 16px;
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
-}
+    .dropbtn {
+      background-color: #4CAF50;
+      color: white;
+      padding: 16px;
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+    }
 
-.dropbtn:hover, .dropbtn:focus {
-  background-color: #3e8e41;
-}
+    .dropbtn:hover, .dropbtn:focus {
+      background-color: #3e8e41;
+    }
 
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
 
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 160px;
-  overflow: auto;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-}
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      overflow: auto;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    }
 
-.dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
+    .dropdown-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
 
-.dropdown-content a:hover {background-color: #f1f1f1}
+    .dropdown-content a:hover {background-color: #f1f1f1}
 
-.show {display:block;}
+    .show {display:block;}
 
 
-</style>
+  </style>
+  <style>
+    .content {
+      padding: 0 18px;
+      display: none;
+      overflow: hidden;
+    }
+    .active, .collapsible:hover {
+      background-color: #ccc;
+    }
+    .collapsible {
+      background-color: white;
+      cursor: pointer;
+      padding: 18px;
+      width: 100%;
+      border: none;
+      text-align: left;
+      outline: none;
+      font-size: 15px;
+    }
+    <!--</style>
+  <style>
+    .dropbtn {
+      background-color: #04AA6D;
+      color: white;
+      padding: 16px;
+      font-size: 16px;
+      border: none;
+    }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f1f1f1;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+
+    .dropdown-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .dropdown-content a:hover {background-color: #ddd;}
+
+    .dropdown:hover .dropdown-content {display: block;}
+
+    .dropdown:hover .dropbtn {background-color: #3e8e41;}
+  </style>
 </head>
-
 <body>
 <div class="navbar navbar-inverse navbar-fixed-top" th:fragment="header">
   <div class="container">
@@ -71,29 +126,28 @@
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-          <a href="#" th:href="@{/headways}">Headways</a>
+          <a href="#" th:href="@{/headways}">Wszystkie chodniki przodkowe</a>
         </li>
         <li>
-          <a href="#" th:href="@{/cabinets}">Cabinets</a>
+          <a href="#" th:href="@{/cabinets}">Szafy manewrowe</a>
         </li>
         <li>
-          <a href="#" th:href="@{/r150s}">Combines</a>
+          <a href="#" th:href="@{/r150s}">Kombajny przodkowe</a>
         </li>
         <li>
-          <a href="#" th:href="@{/fuses}">Fuses</a>
+          <a href="#" th:href="@{/fuses}">Zabezpieczenia</a>
         </li>
         <li>
-          <a href="#" th:href="@{/employees}">Employees</a>
+          <a href="#" th:href="@{/employees}">Pracownicy</a>
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
           <div class="dropdown">
-            <button id="myBtn" class="dropbtn">Options</button>
-            <div id="myDropdown" class="dropdown-content">
+            <button id="myBtn" class="dropbtn">Użytkownik</button>
+            <div id="dropdown" class="dropdown-content">
+              <a href="#" th:href="@{'/headway/new'}">Add headway</a>
               <a href="#" th:href="@{'/'}">Home</a>
-              <a href="#" th:href="@{'/headways'}">All headways</a>
-              <a href="#contact">Contact</a>
             </div>
           </div>
         </li>
@@ -101,7 +155,6 @@
     </div>
   </div>
 </div>
-
 <div class="container-fluid" style="margin-top: 70px;">
   <div class="row" >
     <div class="col-md-6 col-md-offset-3">

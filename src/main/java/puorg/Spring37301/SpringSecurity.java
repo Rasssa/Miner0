@@ -20,7 +20,7 @@ public class SpringSecurity extends WebSecurityConfigurerAdapter {
                 .and()
                 .withUser("user2").password("user2Pass").roles("USER")
                 .and()
-                .withUser("admin").password("adminPass").roles("ADMIN");
+                .withUser("admin").password("adminPass32!").roles("ADMIN");
         // authentication manager
     }
 
