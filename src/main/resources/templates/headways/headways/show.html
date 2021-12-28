@@ -103,15 +103,7 @@
             text-decoration: none;
             display: block;
         }
-        #naglowek{
-            margin: 50px;
-            width: 870px;
-            height: 50px;
-            border: 2px solid blue;
-            border-radius: 25px;
-            font-size: 32px;
-            text-shadow: 2px 2px 11px red
-        }
+
         .dropdown-content a:hover {background-color: #ddd;}
 
         .dropdown:hover .dropdown-content {display: block;}
@@ -128,53 +120,38 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" th:href="@{/}">MINERO</a>
+            <a class="navbar-brand" th:href="@{/}" style="font-size: 26px">M I N E R O</a>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li>
                     <div class="dropdown">
-                        <button id="myBtn" class="dropbtnHeads"><a href="#" th:href="@{/headways}" style="color: silver">Oddział ED-2</a></button>
+                        <button id="myBtn" class="dropbtnHeads"><a style="font-size: 16px; color: silver">Oddział ED-2</a></button>
                         <div id="dropdown" class="dropdown-content">
-                            <a th:href="@{'/employees/shift/'}">Wróć do obecności</a>
-                            <a th:href="@{'/headways/divide/'}">Wróć do podziału</a>
+                            <a th:href="@{'/headway/list/'}">Lista rejonów</a>
+                            <a th:href="@{'/employees/shift/'}">Lista pracowników obecnej zmiany</a>
+                            <a th:href="@{'/headways/divide/'}">Miejsce podziału</a>
                         </div>
                     </div>
                 </li>
                 <li>
                     <div class="dropdown">
-                        <button id="myBtn" class="dropbtnHeads"><a href="#" th:href="@{/headways}"style="color: silver">Szafy manewrowe</a></button>
-                        <div id="dropdown" class="dropdown-content">
-                            <a th:href="@{'/employees/shift/'}">Wróć do obecności</a>
-                            <a th:href="@{'/headways/divide/'}">Wróć do podziału</a>
-                        </div>
+                        <button id="myBtn" class="dropbtnHeads"><a href="#" th:href="@{/cabinet/list}"style="font-size: 16px; color: silver">Szafy manewrowe</a></button>
                     </div>
                 </li>
                 <li>
                     <div class="dropdown">
-                        <button id="myBtn" class="dropbtnHeads"><a href="#" th:href="@{/headways}"style="color: silver">Zabezpieczenia</a></button>
-                        <div id="dropdown" class="dropdown-content">
-                            <a th:href="@{'/employees/shift/'}">Wróć do obecności</a>
-                            <a th:href="@{'/headways/divide/'}">Wróć do podziału</a>
-                        </div>
+                        <button id="myBtn" class="dropbtnHeads"><a href="#" th:href="@{/r150/list}"style="font-size: 16px; color: silver">Kombajny przodkowe</a></button>
                     </div>
                 </li>
                 <li>
                     <div class="dropdown">
-                        <button id="myBtn" class="dropbtnHeads"><a href="#" th:href="@{/headways}"style="color: silver">Zabezpieczenia</a></button>
-                        <div id="dropdown" class="dropdown-content">
-                            <a th:href="@{'/employees/shift/'}">Wróć do obecności</a>
-                            <a th:href="@{'/headways/divide/'}">Wróć do podziału</a>
-                        </div>
+                        <button id="myBtn" class="dropbtnHeads"><a href="#" th:href="@{/fuses}"style="font-size: 16px; color: silver">Zabezpieczenia</a></button>
                     </div>
                 </li>
                 <li>
                     <div class="dropdown">
-                        <button id="myBtn" class="dropbtnHeads"><a href="#" th:href="@{/headways}"style="color: silver">Pracownicy</a></button>
-                        <div id="dropdown" class="dropdown-content">
-                            <a th:href="@{'/employees/shift/'}">Wróć do obecności</a>
-                            <a th:href="@{'/headways/divide/'}">Wróć do podziału</a>
-                        </div>
+                        <button id="myBtn" class="dropbtnHeads"><a href="#" th:href="@{/employees}"style="font-size: 16px; color: silver">Pracownicy</a></button>
                     </div>
                 </li>
             </ul>
@@ -182,20 +159,13 @@
                 <li>
                     <div class="dropdown">
                         <button id="myBtn" class="dropbtn">Użytkownik</button>
-                        <div id="dropdown" class="dropdown-content">
-                            <a th:href="@{'/employees/shift/'}">Wróć do obecności</a>
-                            <a th:href="@{'/headways/divide/'}">Wróć do podziału</a>
-                        </div>
                     </div>
                 </li>
             </ul>
         </div>
     </div>
 </div>
-<span th:if="${headway?.working}"><center><div align="center" style="margin-left: 400px; margin-top: 70px"><b th:text="${headway.deck}" style="font-size: 24px"></b></div></center></span>
-<span th:if="${not headway?.working}"><center><div align="center" style="margin-left: 400px; margin-top: 70px"><b th:text="${headway.deck}" style="font-size: 24px"></b></div></center></span>
-
-<div class="container-fluid" style="margin-left: 350px">
+<div class="container-fluid" style="margin-left: 350px; margin-top: 70px">
     <div class="row">
         <div class="col-sm-5 col-md-3">
             <div class="panel panel-primary">
