@@ -1,3 +1,4 @@
+/*
 package puorg.Spring37301.controllers;
 
 import org.springframework.stereotype.Controller;
@@ -10,3 +11,4 @@ public class MineController {
         return "headways/headways/list";
     }
 }
+*/

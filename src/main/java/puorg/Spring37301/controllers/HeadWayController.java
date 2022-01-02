@@ -65,7 +65,7 @@ public class HeadWayController {
     }
 
     @GetMapping
-    @RequestMapping(value = {"/headways", "/headway/list"})
+    @RequestMapping(value = {"/headways", "/headway/list", "/"})
     public String getHeadways(Model model) {
         Timestamp ts = new Timestamp(System.currentTimeMillis());
         java.util.Date date = ts;
