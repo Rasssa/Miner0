@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MineController {
     @RequestMapping(value = {"/"})
     public String getHeadWays() {
-        return "headways/index";
+        return "headways/headways/list";
     }
 }
