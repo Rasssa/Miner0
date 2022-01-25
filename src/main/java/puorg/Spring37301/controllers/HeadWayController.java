@@ -238,6 +238,7 @@ public class HeadWayController {
             HeadWay headWay1 = headWayRepository.getHeadById(headwayCommand.getId());
             Set<Employee> employees = headWay1.getEmployees();
             employees.stream().forEach(employee -> employee.setHeadWays(null));
+            headWay1.setEmployees(null);
             headWayRepository.save(headWay1);
             HeadWay headWay = headwayCommandToHeadway.convert(headwayCommand);
             headWay.setWorking(headWay1.isWorking());

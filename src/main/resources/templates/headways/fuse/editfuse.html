@@ -11,6 +11,11 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <style>
+        textarea {
+            resize: none;
+        }
+    </style>
+    <style>
         .dropbtn {
             background-color: #4CAF50;
             color: white;
@@ -47,9 +52,6 @@
 
         .dropdown-content a:hover {background-color: #f1f1f1}
 
-        .show {display:block;}
-
-
     </style>
     <style>
         .content {
@@ -77,6 +79,14 @@
             color: white;
             padding: 16px;
             font-size: 16px;
+            border: none;
+        }
+        .dropbtnHeads {
+            background-color: rgba(0,0,0,0);
+            color: black;
+            padding: 10px;
+            font-size: 18px;
+            font-palette: rgba(0,0,0,0);
             border: none;
         }
 
@@ -108,7 +118,7 @@
         .dropdown:hover .dropbtn {background-color: #3e8e41;}
     </style>
 </head>
-<body>
+<body style="margin-left: -300px">
 <div class="navbar navbar-inverse navbar-fixed-top" th:fragment="header">
     <div class="container">
         <div class="navbar-header">
@@ -117,44 +127,54 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" th:href="@{/}">MINERO</a>
+            <a class="navbar-brand" th:href="@{/}" style="font-size: 26px">M I N E R O</a>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li>
-                    <a href="#" th:href="@{/headways}">Wszystkie chodniki przodkowe</a>
+                    <div class="dropdown">
+                        <button id="myBtn" class="dropbtnHeads"><a href="#" style="font-size: 16px; color: silver">Oddział ED-2</a></button>
+                        <div id="dropdown" class="dropdown-content">
+                            <a th:href="@{'/headway/list/'}">Lista rejonów</a>
+                            <a th:href="@{'/employees/shift/'}">Lista pracowników obecnej zmiany</a>
+                            <a th:href="@{'/headways/divide/'}">Miejsce podziału</a>
+                        </div>
+                    </div>
                 </li>
                 <li>
-                    <a href="#" th:href="@{/cabinets}">Szafy manewrowe</a>
+                    <div class="dropdown">
+                        <button id="myBtn" class="dropbtnHeads"><a href="#" th:href="@{/cabinet/list}"style="font-size: 16px; color: silver">Szafy manewrowe</a></button>
+                    </div>
                 </li>
                 <li>
-                    <a href="#" th:href="@{/r150s}">Kombajny przodkowe</a>
+                    <div class="dropdown">
+                        <button id="myBtn" class="dropbtnHeads"><a href="#" th:href="@{/r150/list}"style="font-size: 16px; color: silver">Kombajny przodkowe</a></button>
+                    </div>
                 </li>
                 <li>
-                    <a href="#" th:href="@{/fuses}">Zabezpieczenia</a>
+                    <div class="dropdown">
+                        <button id="myBtn" class="dropbtnHeads"><a href="#" th:href="@{/fuses}"style="font-size: 16px; color: silver">Zabezpieczenia</a></button>
+                    </div>
                 </li>
                 <li>
-                    <a href="#" th:href="@{/employees}">Pracownicy</a>
+                    <div class="dropdown">
+                        <button id="myBtn" class="dropbtnHeads"><a href="#" th:href="@{/employees}"style="font-size: 16px; color: silver">Pracownicy</a></button>
+                    </div>
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li>
                     <div class="dropdown">
                         <button id="myBtn" class="dropbtn">Użytkownik</button>
-                        <div id="dropdown" class="dropdown-content">
-                            <a href="#" th:href="@{'/headway/new'}">Add headway</a>
-                            <a href="#" th:href="@{'/'}">Home</a>
-                        </div>
                     </div>
                 </li>
             </ul>
         </div>
     </div>
 </div>
-<!--/*@thymesVar id="artist" type="com.example.muslibry5k.commands.ArtistCommand"*/-->
 <div class="container-fluid" style="margin-top: 70px">
     <div class="row">
-        <div class="col-md-4 col-md-offset-4">
+        <div class="col-md-4 col-md-offset-5">
             <form  th:object="${fuse}" th:action="@{/fuse/edit/save/}" method="post">
                 <input type="hidden" th:field="*{id}"/>
                 <input type="hidden" th:field="*{idNumber}">

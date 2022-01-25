@@ -213,8 +213,8 @@
               <tr th:each="cabinet1 : ${cabinet}">
                 <td>
                   <p th:each="fuse : ${cabinet.fuses}">
-                    <span th:text="${fuse.name}" class="labelForTextbox">Nazwa</span>
-                    <span th:text="'Do: ' + ${fuse.expire}" class="labelReadOnlyTB">Data legalizacji</span>
+                    <span th:text="${fuse.name}" class="labelForTextbox" style="color: crimson">Nazwa</span>
+                    <span th:text="'Do: ' + ${fuse.expire}" class="labelReadOnlyTB" style="color:chocolate">Data legalizacji</span>
                     <b><span th:text="${fuse.idNumber}" class="labelForTextbox">Rodzaj zabezpieczenia</span></b>
                     <span th:if="${fuse?.fuseExpired}" style="color:red"><a href="#" th:href="@{'/fuse/' + ${fuse.id} +'/edit/'}" style="color:red">Zalegalizuj</a></span>
                 </td>

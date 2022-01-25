@@ -186,7 +186,7 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-md-6 form-group">
-                                    <label>Wybierz rodzaj usterki</label>
+                                    <label>Dodaj prace specjalne:</label>
                                     <select class="form-control" th:field="*{maintenances}" multiple="multiple" style="width: 250px" size="7px">
                                         <option th:each="maintenance : ${maintenans}" th:text="${maintenance.name}" th:value="${maintenance.id}">Maintenance</option>
                                     </select>
