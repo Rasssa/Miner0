@@ -24,3 +24,6 @@ informacji odnośnie stanu poszczególnych chodników przodkowych oraz elementó
 Aplikacja dzięki stworzeniu odpowiedniej struktury oraz wprowadzeniu zależności pozwala na wygodne zapisywanie
 elementów znajdujących się w danym rejonie. Ponad to odpowiedzialna jest za sprawdzanie terminów legalizacji zabezpieczeń
 oraz informowanie użytkownika o ich upływie.
+<p><b>
+    login: user1 <p>
+    password: user1Pass
