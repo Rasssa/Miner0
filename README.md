@@ -8,7 +8,7 @@ Strukturze aplikacji możemy wyodrębnić takie moduły jak :
 <li>c)	Converters - moduł zawierający konwertery z DTO na klase obiektu
 <li>d)	Models - moduł zawierający poszczególne modele klas 
 <li>e)	Repositories - moduł zawierający repozytoria odpowiedzialne za komunikację z baża danych, wykorzystanie CrudRepository z Spring Data
-<li>f) Views - Moduł widoków znajdujący się w folderze resources
+<li>f) Views - moduł widoków znajdujący się w folderze resources.
 Widok aplikacji został zaimplementowany z wykorzystaniem html, css, thymaleaf oraz paroma skryptami javascript.
     <p>
 Aplikacja pozwala na tworzenie wirtualnych obiektów takich elementów chodników przodkowych jak:
